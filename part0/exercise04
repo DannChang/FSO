@@ -1,0 +1,13 @@
+title FSO Exercise 0.4: new note
+
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+server-->browser: new_note 
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+server-->browser: notes
+server-->browser: main.css
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+server-->browser: main.js
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+server-->browser: [{ content: "TRUMP 2020", date: "2020-11-04"}, ...]
+browser->server: HTTP GET https://studies.cs.helsinki.fi/favicon.ico
+server-->browser: favicon.ico
