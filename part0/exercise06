@@ -1,0 +1,13 @@
+title FSO Exercise 0.6: New Note
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+server-->browser: spa.js
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa
+server-->browser: spa
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+server-->browser: new_note_spa
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+server-->browser: favicon.ico
+browser->server: HTTP GET https://studies.cs.helsinki.fi/favicon.ico
+server-->browser: [{ content: "Single Page Submit Test", date: "2020-11-04"}, ...]
+browser->server: https://studies.cs.helsinki.fi/exampleapp/data.json
