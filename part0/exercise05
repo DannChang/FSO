@@ -1,0 +1,18 @@
+title FSO Exercise 0.5: Single page app
+
+
+browser->server: HTTP GET chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/react_devtools_backend.js
+server-->browser: link to spa example app
+note over server
+link directs user to spa example app
+end note
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa
+server-->browser: spa
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+server-->browser: main.css
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+server-->browser: spa.js
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+server-->browser: data.json
+browser->server: HTTP GET https://studies.cs.helsinki.fi/favicon.ico
+server-->browser: favicon.ico
