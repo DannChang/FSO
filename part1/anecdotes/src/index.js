@@ -2,24 +2,28 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
 const Button = ({handleEvent, text}) => {
-  return(
-    <button onClick={handleEvent}>{text}</button>
+  return (
+    <button onClick={handleEvent}>
+      {text}
+    </button>
   )
 }
 
-const Anecdote = (props) => {
-  const {header, points, index} = props
+const Anecdote = ({header, points, index}) => {
   return (
     <div>
-      <h1>{header}</h1>
+      <h1>
+        {header}
+      </h1>
       {anecdotes[index]}
-      <p>has {points[index]} votes</p>
+      <p>
+        has {points[index]} votes
+      </p>
     </div>
-
   )
 }
 
-const App = (props) => {
+const App = ({anecdotes}) => {
   const [selected, setSelected] = useState(0)
   const [points, setPoints] = useState(new Array(6).fill(0)) // new way of filling an array with 0's of arbritary length in ES6
   
@@ -37,10 +41,10 @@ const App = (props) => {
   } 
 
   // handle events
-  const handleSelected = () => {
+  const setToSelected = () => {
     setSelected(getRandomInt(0,6))
   }
-  const handlePoints = () => {
+  const setToPoints = () => {
     const copy = [...points] 
     copy[selected] +=1
     setPoints(copy)
@@ -48,12 +52,10 @@ const App = (props) => {
  
   return(
     <div>
-
       <Anecdote header={"Anecdote of the day"} index={selected} points={points}/>
-      <Button handleEvent={handlePoints} text="vote"/>
-      <Button handleEvent={handleSelected} text="next anecdote"/>
+      <Button handleEvent={setToPoints} text="vote"/>
+      <Button handleEvent={setToSelected} text="next anecdote"/>
       <Anecdote header={"Anecdote with most votes"} index={mostVotes} points={points}/>
-      
     </div>
   )
 }
@@ -75,4 +77,4 @@ ReactDOM.render(
     <App anecdotes={anecdotes}/>
   </React.StrictMode>,
   document.getElementById('root')
-);
+)
