@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 // List all existing contacts stored in persons
-const Contacts = ({persons}) => {
+const Persons = ({persons}) => {
     return (
       <div>  
           {persons.map(person =>
@@ -10,7 +10,7 @@ const Contacts = ({persons}) => {
             </p> 
           )}
       </div>
-    )
-}
+    );
+};
 
-export default Contacts
+export default Persons
