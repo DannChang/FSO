@@ -2,18 +2,20 @@ import React, { useState, useEffect } from 'react';
 import Persons from './components/Persons';
 import Filter from './components/Filter';
 import PersonForm from './components/PersonForm';
-import axios from 'axios'
+import contacts from './services/contacts';
+
 
 const App = () => {
   const [ persons, setPersons ] = useState([]);
   const [ newName, setNewName ] = useState('');
   const [ newNumber, setNewNumber ] = useState('');
   const [ filter, setFilter ] = useState('');
+  const [ errorMessage, setErrorMessage ] = useState(null);
 
-  // fetch data from db.json for persons state
+  // fetch data for persons state
   useEffect(() => {
-    axios
-      .get('http://localhost:3001/persons')
+    contacts
+      .getAll()
       .then(response => {
         setPersons(response.data)
       })
