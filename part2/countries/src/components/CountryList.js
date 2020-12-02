@@ -1,12 +1,11 @@
 import React from 'react';
 import ShowCountryInfo from './ShowCountryInfo';
 
-const CountryList = ({country}) => {
+const CountryList = ({ country }) => {
     console.log("Country list: ", country);
     if (country.length > 10) {
       return <p>Too many matches, please enter more values</p>;
-    } 
-    else {
+    } else {
       return (
         <div>
             {country.map(country => 

@@ -9,7 +9,6 @@ const App = () => {
   const [ countries, setCountries ] = useState([])
   const [ chosenCountry, setChosenCountry ] = useState('')
 
-  // search between States for matching country
   const filteredCountries = countries.filter(country => country.name.toLowerCase().includes(chosenCountry.toLowerCase()));
 
   useEffect(() => {
@@ -23,7 +22,6 @@ const App = () => {
   const handleInputChange = (event) => {
     event.preventDefault();
     setChosenCountry(event.target.value)
-    console.log("Countries filtered in input:", chosenCountry)
   };
 
   return (

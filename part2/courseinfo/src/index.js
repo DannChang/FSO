@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Course from './components/Course'
+import Course from './components/Course';
 
 const App = () => {
   const course = [
@@ -51,10 +51,10 @@ const App = () => {
   return (
     <div>
       <h1>Web development curriculum</h1>
-      <Course course={course[0]} />
-      <Course course={course[1]} />
+        <Course course={course[0]}/>
+        <Course course={course[1]}/>
     </div>
-  )
-}
+  );
+};
 
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(<App />, document.getElementById('root'));

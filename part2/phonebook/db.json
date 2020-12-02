@@ -2,7 +2,7 @@
   "persons": [
     {
       "name": "Arto Hellas",
-      "number": "040-123456",
+      "number": "045-31235234",
       "id": 1
     },
     {
@@ -21,9 +21,19 @@
       "id": 4
     },
     {
-      "name": "Bobs your Uncle",
-      "number": "12345",
+      "name": "Kiryu Kazuma",
+      "number": "6",
       "id": 5
+    },
+    {
+      "name": "Majima",
+      "number": "999",
+      "id": 6
+    },
+    {
+      "name": "Onomichi",
+      "number": "678456413",
+      "id": 7
     }
   ]
 }
