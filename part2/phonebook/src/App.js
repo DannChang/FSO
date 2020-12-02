@@ -2,13 +2,17 @@ import React, { useState, useEffect } from 'react';
 import Persons from './components/Persons';
 import Filter from './components/Filter';
 import PersonForm from './components/PersonForm';
+import Message from './components/Message';
 import contacts from './services/contacts';
+
 
 const App = () => {
   const [ persons, setPersons ] = useState([]);
   const [ newName, setNewName ] = useState('');
   const [ newNumber, setNewNumber ] = useState('');
   const [ searchInput, setSearchInput ] = useState('');
+  const [ message, setMessage ] = useState(null);
+  const [ successMessage, setSuccessMessage ] = useState(false);
 
   const personsToShow = persons.filter(person => person.name.toLowerCase().includes(searchInput.toLowerCase()));
 
@@ -16,8 +20,17 @@ const App = () => {
     contacts
       .getAll()
       .then(setPersons)
-      .catch(err => alert("Error updating database"));
+      .catch(err => {
+        setMessage('Could not get contacts.');
+        setSuccessMessage(false);
+      });
   }, []);
+
+  useEffect (()=> {
+    setTimeout(()=> {
+      setMessage(null);
+    }, 3000);
+  }, [message]);
 
   const handleAddPerson = (event) => {
     event.preventDefault();
@@ -36,21 +49,30 @@ const App = () => {
         contacts
           .update(existingPerson.id, newPerson)
           .then((updatedPerson) => {
-            setPersons(persons.map(person => person.id === updatedPerson.id ? updatedPerson : person))
+            setPersons(persons.map(person => person.id === updatedPerson.id ? updatedPerson : person));
+            setMessage(`${updatedPerson.name} has been updated.`);
+            setSuccessMessage(true);
           })
-          .catch(err => 
-            alert("Unable to update existing contact.")
-          );
+          .catch(err => {
+            setMessage(              
+              `Information of ${
+              newPerson.name
+              } has already been removed from the server.`);
+            setSuccessMessage(false);
+          });
     } else {
         contacts
           .create(newPerson)
           .then(createdPerson => {
             setPersons(persons.concat(createdPerson));
+            setMessage(`Added ${createdPerson.name}.`);
+            setSuccessMessage(true);
           })
-          .catch(err => 
-            alert("cannot add new contact")
-          );
-        };
+          .catch(err => {
+            setMessage(`Could not add ${newPerson.name}.`);
+            setSuccessMessage(false);
+          });
+      };
     setNewName('');
     setNewNumber('');    
   };
@@ -78,13 +100,22 @@ const App = () => {
   };
 
   return (
-    <div>
-      <h2>Phonebook</h2>
+    <div style={{
+      backgroundColor: 'lightyellow', 
+      borderStyle: 'solid', 
+      borderColor: 'lightblue', 
+      borderRadius: 25
+    }}>
+      <h2 style={{color: 'darkgreen'}}>Phonebook</h2>
+        <Message 
+          message={message}
+          success={successMessage}
+        />
         <Filter 
           value={searchInput} 
           onChange={handleSearchInput}
         />
-      <h3>Add a new</h3>
+      <h3 style={{color: 'darkred'}}>Add a new</h3>
         <PersonForm 
           onSubmit={handleAddPerson}
           name={newName}
@@ -92,7 +123,7 @@ const App = () => {
           onHandleName={handleNewName}
           onHandleNumber={handleNewNumber}
         />
-      <h3>Numbers</h3>
+      <h3 style={{color: 'orange'}}>Numbers</h3>
         <Persons 
           persons={personsToShow} 
           onDelete={handleDelete}
