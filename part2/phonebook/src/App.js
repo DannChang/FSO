@@ -5,6 +5,8 @@ import PersonForm from './components/PersonForm';
 import Message from './components/Message';
 import contacts from './services/contacts';
 
+const cors = require('cors');
+
 
 const App = () => {
   const [ persons, setPersons ] = useState([]);
@@ -131,5 +133,5 @@ const App = () => {
     </div>
   );
 };
-
+App.use(cors());
 export default App;
