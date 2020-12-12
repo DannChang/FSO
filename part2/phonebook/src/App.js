@@ -5,8 +5,6 @@ import PersonForm from './components/PersonForm';
 import Message from './components/Message';
 import contacts from './services/contacts';
 
-const cors = require('cors');
-
 
 const App = () => {
   const [ persons, setPersons ] = useState([]);
@@ -16,7 +14,6 @@ const App = () => {
   const [ message, setMessage ] = useState(null);
   const [ successMessage, setSuccessMessage ] = useState(false);
 
-  const personsToShow = persons.filter(person => person.name.toLowerCase().includes(searchInput.toLowerCase()));
 
   useEffect (()=> {
     contacts
@@ -101,6 +98,8 @@ const App = () => {
     setNewNumber(event.target.value)
   };
 
+  const personsToShow = persons.filter(person => person.name.toLowerCase().includes(searchInput.toLowerCase()));
+
   return (
     <div style={{
       backgroundColor: 'lightyellow', 
@@ -133,5 +132,5 @@ const App = () => {
     </div>
   );
 };
-App.use(cors());
+
 export default App;
